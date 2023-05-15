@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { removeFromCart } from '../../reducers/cartSlice';
 import { FiTrash } from 'react-icons/fi';
-
-import './style.scss';
 import { ToastContainer } from 'react-toastify';
-
-import toastUtil from '../../utils/toast';
 import { Link } from 'react-router-dom';
+
+import { removeFromCart, editQuantity } from '../../reducers/cartSlice';
+import toastUtil from '../../utils/toast';
 import Modal from '../../components/Modal';
-import { editQuantity } from '../../reducers/cartSlice';
+import './style.scss';
 
 export default function Cart() {
   const cart = useSelector(state => state.cart);
@@ -20,6 +16,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // calculate cost of cart
     let cost = 0;
     cart.items.forEach(item => {
       cost += (item.discountPrice || item.price) * item.quantity;
@@ -34,6 +31,7 @@ export default function Cart() {
   };
 
   const purchaseHandler = () => {
+    // empty cart on purchase and show purchase successful modal
     dispatch(removeFromCart([]));
     setShowModal(true);
   };

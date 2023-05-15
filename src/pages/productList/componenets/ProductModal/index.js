@@ -3,15 +3,15 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-
-import { addToCart, editQuantity } from '../../../../reducers/cartSlice';
-import Sizes from './constants/size';
-import './style.scss';
-
 import Slider from 'react-slick';
 
-import SizeComponent from './componenets/SizeComponent';
+import { addToCart, editQuantity } from '../../../../reducers/cartSlice';
 import toastUtil from '../../../../utils/toast';
+
+import Sizes from './constants/size';
+import SliderSettings from './constants/sliderSettings';
+import SizeComponent from './componenets/SizeComponent';
+import './style.scss';
 
 function ProductModal({ activeProductModal }) {
   const [activeSize, setActiveSize] = useState(null);
@@ -32,6 +32,7 @@ function ProductModal({ activeProductModal }) {
     dispatch(editQuantity(newCart));
     toastUtil('Cart updated', 'success');
   };
+
   const decreaseCartHandler = () => {
     const newCart = JSON.parse(JSON.stringify(cart.items));
     newCart.forEach(cartItem => {
@@ -59,6 +60,7 @@ function ProductModal({ activeProductModal }) {
   };
 
   useEffect(() => {
+    // check if current product exists in cart
     if (cart.items.length) {
       let doesExist = false;
       cart.items.forEach(cartItem => {
@@ -77,14 +79,7 @@ function ProductModal({ activeProductModal }) {
       setActiveCartItem(null);
     }
   }, [cart, activeProductModal]);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
+
   return (
     <div key={activeProductModal.name} className='modal-item'>
       <div className='images-container'>
@@ -103,7 +98,7 @@ function ProductModal({ activeProductModal }) {
         <div className='slider'>
           {Array.isArray(activeProductModal.images) &&
           activeProductModal.images.length > 1 ? (
-            <Slider ref={sliderRef} {...settings}>
+            <Slider ref={sliderRef} {...SliderSettings}>
               {activeProductModal.images.map(image => {
                 return (
                   <figure key={uuid()}>

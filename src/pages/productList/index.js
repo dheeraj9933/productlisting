@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import apiData from '../../apiData';
-
-import './style.scss';
 import ProductItem from './componenets/ProductItem';
 import Modal from '../../components/Modal';
 import ProductModal from './componenets/ProductModal';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { ToastContainer } from 'react-toastify';
+import './style.scss';
 
 export default function ProductList () {
   const [showProductModal, setShowProductModal] = useState(false);

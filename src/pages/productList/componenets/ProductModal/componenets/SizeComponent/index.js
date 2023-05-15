@@ -1,5 +1,3 @@
-// import {} from 'react'
-
 export default function SizeComponent ({ size, setActiveSize, activeSize }) {
   return (
     <button
