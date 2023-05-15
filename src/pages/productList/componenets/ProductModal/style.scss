@@ -19,6 +19,9 @@
       }
       .modal-price {
         font-size: 1.3rem;
+        .price-title {
+          color: $grey;
+        }
       }
       .original-price {
         margin-left: 5px;
@@ -28,6 +31,11 @@
     .button-container {
       display: flex;
       flex-wrap: wrap;
+      .size-title {
+        margin-top: 2px;
+        font-size: 1.2rem;
+        color: $grey;
+      }
       button {
         margin: 0 5px;
         flex-basis: 40px;

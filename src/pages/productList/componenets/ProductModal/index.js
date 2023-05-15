@@ -76,7 +76,7 @@ function ProductModal({ activeProductModal }) {
       setDoesItemExistInCart(false);
       setActiveCartItem(null);
     }
-  }, [cart]);
+  }, [cart, activeProductModal]);
   const settings = {
     dots: true,
     infinite: true,
@@ -95,7 +95,7 @@ function ProductModal({ activeProductModal }) {
                 key={uuid()}
                 onClick={() => sliderRef?.current.slickGoTo(index)}
               >
-                <img src={image} alt='product-image' />
+                <img src={image} alt={activeProductModal.name} />
               </figure>
             );
           })}
@@ -107,13 +107,16 @@ function ProductModal({ activeProductModal }) {
               {activeProductModal.images.map(image => {
                 return (
                   <figure key={uuid()}>
-                    <img src={image} alt='product-image' />
+                    <img src={image} alt={activeProductModal.name} />
                   </figure>
                 );
               })}
             </Slider>
           ) : (
-            <img src={activeProductModal.images[0]} alt='product-image' />
+            <img
+              src={activeProductModal.images[0]}
+              alt={activeProductModal.name}
+            />
           )}
         </div>
       </div>
@@ -122,11 +125,13 @@ function ProductModal({ activeProductModal }) {
           <li className='modal-name capitalize'>{activeProductModal.name}</li>
           <li className='modal-brand uppercase'>{activeProductModal.brand}</li>
           <li className='modal-price'>
-            <span className=''>Price</span> : ₹{' '}
+            <span className='price-title'>Price</span> : ₹{' '}
             {activeProductModal.discountPrice ? (
               <span>
                 {activeProductModal.discountPrice}
-                <span className='line-through text-muted original-price'>{activeProductModal.price}</span>
+                <span className='line-through text-muted original-price'>
+                  {activeProductModal.price}
+                </span>
               </span>
             ) : (
               activeProductModal.price
@@ -134,6 +139,7 @@ function ProductModal({ activeProductModal }) {
           </li>
         </ul>
         <div className='button-container'>
+          <span className='size-title'>Size:</span>
           {Sizes.map(size => (
             <SizeComponent
               key={size}
@@ -178,7 +184,6 @@ function ProductModal({ activeProductModal }) {
           </button>
         </div>
       </div>
-      
     </div>
   );
 }

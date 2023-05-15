@@ -1,4 +1,5 @@
-export default [
+
+const apiData = [
     {
         name: 'black shirt',
         images: ['https://images.unsplash.com/photo-1611601322175-ef8ec8c85f01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80',
@@ -34,3 +35,5 @@ export default [
         gender: 'female'
     }
 ]
+
+export default apiData

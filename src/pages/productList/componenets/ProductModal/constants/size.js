@@ -1,3 +1,3 @@
-export default [
-    'sm', 'md', 'l', 'xl'
-]
+const sizeArray = ['sm', 'md', 'l', 'xl'];
+
+export default sizeArray;

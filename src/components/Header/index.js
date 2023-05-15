@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 import './style.scss';
 
-export default function () {
+export default function Header () {
   const [cartCount, setCartCount] = useState(0);
 
   const cart = useSelector(state => state.cart);

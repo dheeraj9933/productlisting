@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ({ product, handleProductModal }) {
+export default function ProductItem ({ product, handleProductModal }) {
   return (
     <li
       key={product.name}

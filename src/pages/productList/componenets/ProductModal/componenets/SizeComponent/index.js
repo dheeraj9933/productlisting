@@ -1,6 +1,6 @@
 // import {} from 'react'
 
-export default function ({ size, setActiveSize, activeSize }) {
+export default function SizeComponent ({ size, setActiveSize, activeSize }) {
   return (
     <button
       className={`button-outline uppercase ${

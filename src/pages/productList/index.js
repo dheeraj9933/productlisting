@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { ToastContainer } from 'react-toastify';
 
-export default function () {
+export default function ProductList () {
   const [showProductModal, setShowProductModal] = useState(false);
   const [activeProductModal, setActiveProductModal] = useState(null);
   const [activeProducts, setActiveProducts] = useState(apiData);

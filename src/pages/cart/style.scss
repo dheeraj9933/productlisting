@@ -12,8 +12,8 @@
       display: flex;
       flex-shrink: 0;
       padding: 5px;
-      border: 1px solid #eee;
-      box-shadow: 0px 2px 5px #ccc;
+      border: 1px solid $veryLightGrey;
+      box-shadow: 0px 2px 5px $lightGrey;
       position: relative;
       .remove-from-cart {
         right: 0;
@@ -76,8 +76,8 @@
     padding: 15px 30px 20px 30px;
     margin-bottom: 10px;
     flex-basis: 250px;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 2px #ccc;
+    border: 1px solid $lightGrey;
+    box-shadow: 2px 2px 2px $lightGrey;
     button {
       margin-top: 12px;
       transition: all 0.3s ease;
@@ -97,7 +97,7 @@
       font-weight: 500;
     }
   }
-  @media only screen and (max-width: 995px) {
+  @media only screen and (max-width: $large) {
     flex-flow: column-reverse;
     .cart-items li {
       margin-right: 0;
@@ -121,7 +121,7 @@
       flex-basis: auto;
     }
   }
-  @media only screen and (max-width: 576px) {
+  @media only screen and (max-width: $small) {
     .cart-summary {
       padding: 15px 15px 20px 15px;
     }

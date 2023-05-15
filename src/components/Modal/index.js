@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 import './style.scss';
 
-export default function ({ children, customClose }) {
+export default function Modal ({ children, customClose }) {
   const modalContent = useRef();
   const handleClose = e => {
     if (!modalContent.current.contains(e.target)) {
