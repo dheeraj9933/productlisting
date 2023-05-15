@@ -69,7 +69,12 @@
           }
         }
       }
-      
+      .cart-quantity {
+        button {
+          margin: 0 7px;
+          padding: 5px 10px;
+        }
+      }
     }
   }
   .cart-summary {

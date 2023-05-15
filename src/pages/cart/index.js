@@ -11,8 +11,9 @@ import { ToastContainer } from 'react-toastify';
 import toastUtil from '../../utils/toast';
 import { Link } from 'react-router-dom';
 import Modal from '../../components/Modal';
+import { editQuantity } from '../../reducers/cartSlice';
 
-export default function Cart () {
+export default function Cart() {
   const cart = useSelector(state => state.cart);
   const [itemsPrice, setItemsPrice] = useState(0);
   const [showModal, setShowModal] = useState(false);
@@ -27,7 +28,6 @@ export default function Cart () {
   }, [cart]);
 
   const removeCartHandler = productName => {
-    console.log('removeCartHandler');
     const newCart = JSON.parse(JSON.stringify(cart.items));
     toastUtil('Product removed from cart', 'success');
     dispatch(removeFromCart(newCart.filter(item => item.name !== productName)));
@@ -36,6 +36,22 @@ export default function Cart () {
   const purchaseHandler = () => {
     dispatch(removeFromCart([]));
     setShowModal(true);
+  };
+
+  const handleCartQuantityChange = (product, operation) => {
+    const newCart = JSON.parse(JSON.stringify(cart.items));
+    newCart.forEach(cartItem => {
+      if (cartItem.name === product.name) {
+        if (operation === 'add') {
+          cartItem.quantity += 1;
+          toastUtil('Cart updated', 'success');
+        } else if (operation === 'remove' && cartItem.quantity > 1) {
+          cartItem.quantity -= 1;
+          toastUtil('Cart updated', 'success');
+        }
+      }
+    });
+    dispatch(editQuantity(newCart.filter(item => item.quantity > 0)));
   };
 
   return (
@@ -75,8 +91,25 @@ export default function Cart () {
                         product.price
                       )}{' '}
                     </span>
-                    <span>
-                      <span className='text-muted'>Qty</span>:{product.quantity}
+                    <span className='cart-quantity'>
+                      <span className='text-muted'>Qty</span>:
+                      <button
+                        className='button-primary'
+                        onClick={() =>
+                          handleCartQuantityChange(product, 'remove')
+                        }
+                        title='Reduce Quantity'
+                      >
+                        -
+                      </button>
+                      {product.quantity}
+                      <button
+                        className='button-primary'
+                        onClick={() => handleCartQuantityChange(product, 'add')}
+                        title='Increase Quantity'
+                      >
+                        +
+                      </button>
                     </span>
                     <span>
                       <span className='text-muted'>Total Price</span>: ₹
