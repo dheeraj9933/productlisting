@@ -1,0 +1,42 @@
+@import '../../globalStyles';
+
+.header {
+    padding: 20px 0;
+    background-color: $primaryColor;
+    color: $white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    .wrapper {
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+            margin: 0;
+            font-size: 1rem;
+        }
+        a {
+            color: $white;
+        }
+        .cart-icon {
+            svg {
+                font-size: 20px;
+                position: relative;
+                top: 2px;
+            }
+            .cart-count {
+                position: relative;
+                bottom: 10px;
+                background-color: $green;
+                font-size: .7rem;
+                border-radius: 50%;
+                padding: 0 3px;
+            }
+        }
+    }
+   
+}
